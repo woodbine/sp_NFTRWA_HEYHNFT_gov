@@ -89,7 +89,7 @@ url = "http://www.hey.nhs.uk/About-Us/trustexpenditure.htm"
 errors = 0
 data = []
 
-#### READ HTML 1.2
+#### READ HTML 1.0
 
 html = urllib2.urlopen(url)
 soup = BeautifulSoup(html, 'lxml')
