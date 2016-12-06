@@ -85,7 +85,7 @@ def convert_mth_strings ( mth_string ):
 #### VARIABLES 1.0
 
 entity_id = "NFTRWA_HEYHNFT_gov"
-url = "http://www.hey.nhs.uk/About-Us/trustexpenditure.htm"
+url = "https://www.hey.nhs.uk/about-us/freedom-of-information/trust-expenditure-over-25k/"
 errors = 0
 data = []
 
@@ -98,14 +98,14 @@ soup = BeautifulSoup(html, 'lxml')
 #### SCRAPE DATA
 
 
-links = soup.find_all('a')
+links = soup.find_all('a', href=True)
 for link in links:
     if '.csv' in link['href'] or '.xls' in link['href'] or '.xlsx' in link['href']:
-        if 'http://' not in link['href']:
+        if 'http' not in link['href']:
             url = 'http://www.hey.nhs.uk'+link['href']
-        if 'http://' in link['href']:
+        if 'http' in link['href']:
             url = link['href']
-        title = link.text.strip().split('-')[-1].strip()
+        title = link.text.strip().split(u'—')[-1].strip()
         csvMth = title[:3]
         csvYr = title[-4:]
         csvMth = convert_mth_strings(csvMth.upper())
